@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--     <script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script> -->
+    <title>Document</title>
+</head>
+
+<style>
+
+
+html {
+        overflow: hidden;
+        height: 100%
+    }
+
+    body {
+        /* 视差元素的父级需要3D视角 */
+        perspective: 1px;
+        transform-style: preserve-3d; 
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    #app{
+        width: 100vw;
+        height:200vh;
+        background:skyblue;
+        padding-top:100px;
+    }
+  .one{
+        width:500px;
+        height:200px;
+        background:#409eff;
+        transform: translateZ(0px);
+        margin-bottom: 50px;
+    }
+    .two{
+        width:500px;
+        height:200px;
+        background:#67c23a;
+        transform: translateZ(-1px);
+        margin-bottom: 150px;
+    }
+    .three{
+        width:500px;
+        height:200px;
+        background:#e6a23c;
+        transform: translateZ(-2px);
+        margin-bottom: 150px;
+    }
+
+       
+
+
+
+</style>
+
+<body>
+
+
+    <script>
+
+
+
+
+        let one = {name: 'amy', age: 18}
+        let two = test(one)
+
+        two.name = '小明222'
+
+        console.log(two)
+
+
+        function test(obj){
+            if(typeof obj != 'object' || obj == null){
+                return obj
+            }
+
+            let res
+
+            if(res instanceof Array){
+                res = []
+            }else{
+                res = {}
+            }
+
+            for(let key in obj){
+                res[key] = test(obj[key])
+            }
+
+            return res
+        }
+
+       
+
+
+        function a (fun, de){
+            let timer, that;
+            return function () {
+                that = this
+                if(timer){
+                    clearTimeout(timer)
+                }
+
+                timer = setTimeout(() => {
+                    fun.call(that)
+                }, de);
+
+            }
+        }
+
+        function b (fun, de){
+            let timer, that;
+            return function (){
+                if(!timer){
+                    timer = setTimeout(() => {
+                        fun.call(that)
+                        timer = null
+                    }, de);
+                }
+            }
+        }
+
+
+
+
+
+
+
+        
+
+
+   /*  function deep(obj) {
+
+        if(typeof obj != 'object' || obj == null){
+            return obj
+        }
+
+       let res
+
+       if(res instanceof Array){
+           res = []
+       }else{
+           res = {}
+       }
+
+       for(let key in obj){
+           res[key] = deep(obj[key])
+       }
+
+       return res
+
+        
+    } */
+
+
+     /*    
+        function deep(obj) {
+            if(typeof obj != 'object' || obj == null){
+                return obj
+            }
+            let res
+            if(res instanceof Array){
+                res = []
+            }else{
+                res = {}
+            }
+            for(let key in obj){
+                let key1 = key
+                let key2 = ''
+                const newKey = key.split('_').map((item, index) => {
+                    if(index === 0) return item
+
+                    if(item.length > 0){
+                        const newItem = item[0].toUpperCase() + item.substr(1);
+                        return newItem;
+                    }
+                }).join('');
+                res[newKey] = deep(obj[key])
+            }
+
+            return res 
+        } */
+
+       
+
+
+        
+
+
+
+        
+     
+
+    
+        
+
+      
+
+    </script>
+    
+</body>
+
+
+</html>
